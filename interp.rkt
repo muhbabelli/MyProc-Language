@@ -77,7 +77,20 @@
       ;;----------------------------------------------------
       ; INSERT YOUR CODE HERE
       ; Write the required expressions starting from here
+      (stack-exp () 
+                '())
+      
+      (stack-push-exp (stack exp)
+                      (let ((val (value-of exp env)))
+                        (let ((num (expval->num val)))
+                          (cons num (value-of stack env)))))
+      
+      (stack-pop-exp (stack)
+                     ()
+      
+      )
 
+      
       ;;-------------------------------------------------
       
       )))
