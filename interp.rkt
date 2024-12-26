@@ -77,8 +77,7 @@
       ;;----------------------------------------------------
       ; INSERT YOUR CODE HERE
       ; Write the required expressions starting from here
-      (stack-exp () 
-                '())
+      (stack-exp () '())
       
       (stack-push-exp (stack exp)
                       (let ((val (value-of exp env)))
@@ -86,7 +85,10 @@
                           (cons num (value-of stack env)))))
       
       (stack-pop-exp (stack)
-                     ()
+                     (if (null? stack) (begin '() (error "can't pop-stack") end)
+
+                     
+                     )
       
       )
 

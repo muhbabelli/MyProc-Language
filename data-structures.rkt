@@ -23,7 +23,8 @@
   ; hint: if you are using a new variable type you may need to define
   ;       it here as an expressed value.
   ;;---------------------------
-
+  (stack-val
+   (stack list?))
   ;;---------------------------
   )
 
@@ -61,7 +62,12 @@
 ; hint: you may need a procedure to parse from expressed value
 ;       to the queue expression.
 ;;-----------------------------------
-
+(define expval->stack
+  (lambda (v)
+    (cases expval v
+      (stack-val (stack) stack)
+      (else (expval-extractor-error 'stack v)))
+    ))
 
 ;;-----------------------------------
 
