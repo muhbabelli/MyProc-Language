@@ -139,7 +139,13 @@
                             )
       )
 
-      
+      (stack-merge-exp (exp1 exp2)
+                        (let ((stack1 (expval->stack (value-of exp1 env)))
+                              (stack2 (expval->stack (value-of exp2 env))))
+                          (stack-val (stack-merge stack1 stack2))
+                        )
+      )
+
   
       
       
@@ -165,7 +171,14 @@
         stack
         (stack-pop-multi (cdr stack) (- num 1)) 
     )
-  )
+)
+
+(define (stack-merge stack1 stack2)
+    (if (null? stack2) 
+        stack1
+        (stack-merge (cons (car stack2) stack1) (cdr stack2))
+    )
+)
 
 ;;-----------------------------------------
 
