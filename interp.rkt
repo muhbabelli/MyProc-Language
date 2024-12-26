@@ -129,10 +129,17 @@
       (stack-pop-multi-exp (exp1 exp2)
                             (let ((stack (expval->stack (value-of exp1 env)))
                                   (num (expval->num (value-of exp2 env))))
-                              (stack-val (stack-pop-multi stack num))
+                              (if (> num (length stack))
+                                  (begin
+                                    (display "Number is greater than stack length!")
+                                    (stack-val '())
+                                  )
+                                  (stack-val (stack-pop-multi stack num))
+                              )
                             )
-      
       )
+
+      
   
       
       
