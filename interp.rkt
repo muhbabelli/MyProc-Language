@@ -77,12 +77,17 @@
       ;;----------------------------------------------------
       ; INSERT YOUR CODE HERE
       ; Write the required expressions starting from here
-      (stack-exp () '())
+      (stack-exp () stack-val '())
       
-      (stack-push-exp (stack exp)
-                      (let ((val (value-of exp env)))
-                        (let ((num (expval->num val)))
-                          (cons num (value-of stack env)))))
+      (stack-push-exp (exp1 exp2)
+                      (let ((stackval (value-of exp1 env))
+                            (numval (value of exp2 env)))
+                        (let ((stack (expval->stack stackval))
+                              (num (expval->num numval)))
+                          (stack-val (cons num stack))
+                        )
+                      )
+      )
       
       (stack-pop-exp (stack)
                      (if (null? stack) (begin '() (error "can't pop-stack") end)
