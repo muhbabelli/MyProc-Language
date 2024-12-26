@@ -93,7 +93,10 @@
                      (let ((stackval (value-of exp1 env)))
                        (let ((stack (expval->stack stackval)))
                          (if (null? stack) 
-                              (stack-val '())
+                              (begin
+                                (display "Warning: Empty Stack!")
+                                (stack-val '())
+                              )
                               (stack-val (cdr stack))
                          )
                        )
@@ -102,15 +105,35 @@
 
       
       (stack-peek-exp (exp)
-                     (let ((stackval (value-of exp1 env)))
-                       (let ((stack (expval->stack stackval)))
-                         (if (null? stack) 
-                              (num-val 2813)
-                              (num-val (car stack))
-                         )
-                       )
-                     )             
+                      (let ((stackval (value-of exp1 env)))
+                        (let ((stack (expval->stack stackval)))
+                          (if (null? stack) 
+                                (begin 
+                                  (display "Warning: Empty Stack!")
+                                  (num-val 2813)
+                                )
+                                (num-val (car stack))
+                          )
+                        )
+                      )             
       )
+
+      (stack-push-multi-exp (exp1 exps)
+                            (let ((stack (expval->stack (value-of exp1 env)))
+                                  (nums (map (lambda (exp) (expval->num (value-of exp env))) exps)))
+                              (stack-val (stack-push-multi stack nums))
+                            )
+      
+      )
+
+      (stack-pop-multi-exp (exp1 exp2)
+                            (let ((stack (expval->stack (value-of exp1 env)))
+                                  (num (expval->num (value-of exp2 env))))
+                              (stack-val (stack-pop-multi stack num))
+                            )
+      
+      )
+  
       
       
 
@@ -123,7 +146,19 @@
 ; INSERT YOUR CODE HERE
 ; you may use this area to define helper functions
 ;;-----------------------------------------
+(define (stack-push-multi stack nums)
+    (if (null? nums) 
+        stack
+        (stack-push-multi (cons (car nums) stack) (cdr nums))
+    )
+)
 
+(define (stack-pop-multi stack num)
+    (if (= num 0)
+        stack
+        (stack-pop-multi (cdr stack) (- num 1)) 
+    )
+  )
 
 ;;-----------------------------------------
 
