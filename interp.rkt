@@ -89,18 +89,24 @@
                       )
       )
       
-      (stack-pop-exp (stack)
-                     (if (null? stack) (begin '() (error "can't pop-stack") end)
-
-                     
-                     )
-      
+      (stack-pop-exp (exp)
+                     (let ((stackval (value-of exp1 env)))
+                       (let ((stack (expval->stack stackval)))
+                         (if (null? stack) 
+                              (stack-val '())
+                              (stack-val (cdr stack))
+                         )
+                       )
+                     )             
       )
+      
+      
+      
 
       
       ;;-------------------------------------------------
       
-      )))
+    )))
 
 ;;-----------------------------------------
 ; INSERT YOUR CODE HERE
