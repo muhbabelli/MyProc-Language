@@ -99,7 +99,18 @@
                        )
                      )             
       )
+
       
+      (stack-peek-exp (exp)
+                     (let ((stackval (value-of exp1 env)))
+                       (let ((stack (expval->stack stackval)))
+                         (if (null? stack) 
+                              (num-val 2813)
+                              (num-val (car stack))
+                         )
+                       )
+                     )             
+      )
       
       
 
