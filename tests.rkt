@@ -133,4 +133,4 @@
  (simple-merge-2 "stack-merge(empty-stack(), stack-push-multi(empty-stack(), 4, 5, 6))" (4 5 6))
 )
 
-(display "If you don't see \"FAILURE\" all tests were successful. If not revise your code.")
+;;(display "If you don't see \"FAILURE\" all tests were successful. If not revise your code.")

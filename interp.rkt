@@ -77,11 +77,11 @@
       ;;----------------------------------------------------
       ; INSERT YOUR CODE HERE
       ; Write the required expressions starting from here
-      (stack-exp () stack-val '())
+      (stack-exp () (stack-val '()))
       
       (stack-push-exp (exp1 exp2)
                       (let ((stackval (value-of exp1 env))
-                            (numval (value of exp2 env)))
+                            (numval (value-of exp2 env)))
                         (let ((stack (expval->stack stackval))
                               (num (expval->num numval)))
                           (stack-val (cons num stack))
@@ -90,11 +90,12 @@
       )
       
       (stack-pop-exp (exp)
-                     (let ((stackval (value-of exp1 env)))
+                     (let ((stackval (value-of exp env)))
                        (let ((stack (expval->stack stackval)))
                          (if (null? stack) 
                               (begin
                                 (display "Warning: Empty Stack!")
+                                (newline)
                                 (stack-val '())
                               )
                               (stack-val (cdr stack))
@@ -105,11 +106,12 @@
 
       
       (stack-peek-exp (exp)
-                      (let ((stackval (value-of exp1 env)))
+                      (let ((stackval (value-of exp env)))
                         (let ((stack (expval->stack stackval)))
                           (if (null? stack) 
                                 (begin 
                                   (display "Warning: Empty Stack!")
+                                  
                                   (num-val 2813)
                                 )
                                 (num-val (car stack))
@@ -132,6 +134,7 @@
                               (if (> num (length stack))
                                   (begin
                                     (display "Number is greater than stack length!")
+                                    (newline)
                                     (stack-val '())
                                   )
                                   (stack-val (stack-pop-multi stack num))
