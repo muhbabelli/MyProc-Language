@@ -111,7 +111,7 @@
                           (if (null? stack) 
                                 (begin 
                                   (display "Warning: Empty Stack!")
-                                  
+                                  (newline)
                                   (num-val 2813)
                                 )
                                 (num-val (car stack))
